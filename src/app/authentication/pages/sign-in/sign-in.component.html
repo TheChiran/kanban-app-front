@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="row">
+      <div class="card col-md-4">
+      <div class="card-body mt-5 mb-5">
+      <p style="text-align: center;">Track your project and grow more</p>
+        <form [formGroup]="userLoginForm" (ngSubmit)="login()">
+            <div class="form-group">
+                <div class="form-row mt-3">
+                  <!-- Username input -->
+                  <label for="exampleForm2">Username</label>
+                  <input 
+                  type="text" class="form-control"
+                  [ngClass]="{'is-invalid': submitted && formControl.username.errors}"
+                  formControlName="username"
+                  >
+                  <div class="invalid-feedback" *ngIf="submitted && formControl.username.errors?.required">
+                    Username Is Required
+                  </div>
+                  <div class="invalid-feedback" *ngIf="submitted && formControl.username.errors?.minlength">
+                    Username must be minimum 5 characters
+                  </div>
+                </div>
+                <div class="form-row mt-3">
+                  <!-- Password input -->
+                  <label for="userpassword">Password</label>
+                  <input type="password" class="form-control"
+                    [ngClass]="{'is-invalid': submitted && formControl.password.errors}"
+                    formControlName="password"
+                  >
+                  <div class="invalid-feedback" *ngIf="submitted && formControl.password.errors?.required">
+                    Password Is Required
+                  </div>
+                  <div class="invalid-feedback" *ngIf="submitted && formControl.username.errors?.minLength">
+                    Password must be minimum 8 characters
+                  </div>
+                </div>
+              </div>
+              <p>Don't have an account ? <a routerLink="/auth/sign-up">Sign-Up</a></p>
+              <p>Forget password? <a routerLink="/auth/sign-up">Reset</a></p>
+              <button class="btn btn-sm btn-block">Login</button>
+        </form>
+      </div>
+    </div>
+    </div>
+  </div>
+  

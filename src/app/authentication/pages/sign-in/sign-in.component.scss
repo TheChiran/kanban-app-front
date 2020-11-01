@@ -1,0 +1,17 @@
+@import '../../../common-styles/common.scss';
+
+.container{
+    // background: linear-gradient(270.07deg, $primary-bg-1 0.07%, $primary-bg-2 99.95%) !important;
+    .row{
+        .card{
+            @include make-perfect-center;
+            // background: $card-bg;
+    
+            .card-body{
+                button{
+                    background: $card-btn-bg;
+                }
+            }
+        }
+    }
+}

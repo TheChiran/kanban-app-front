@@ -1,0 +1,5 @@
+@import '../../common-styles/common.scss';
+.navbar{
+     @include makeTransparent;
+    border-bottom: 1px solid rgba(255,255,255,0.5);
+}

@@ -1,0 +1,19 @@
+$card-bg: #C4C4C4;
+$card-btn-bg: #28C2B0;
+$primary-bg-1: #194651;
+$primary-bg-2: #0B4737;
+@mixin make-perfect-center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        max-width: 380px;
+}
+
+@mixin primaryBackground {
+    background: linear-gradient(270.07deg, $primary-bg-1 0.07%, $primary-bg-2 99.95%) !important;
+}
+
+@mixin makeTransparent{
+        background: transparent !important;
+}

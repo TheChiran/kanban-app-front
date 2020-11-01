@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row">
+    <div class="card col-md-3 mx-auto">
+    <div class="card-body mt-5 mb-5">
+    <p style="text-align: center;" class="mb-3">{{projectHeadContent}}</p>
+      <form [formGroup]="signUpForm" (ngSubmit)="register()">
+        <div class="form-group">
+          <div class="form-row mt-5">
+            <!-- Username input -->
+            <label for="exampleForm2">Username</label>
+            <input type="text" class="form-control"
+              [ngClass]="{'is-invalid': submitted && formControl.username.errors}"
+              formControlName="username"
+            >
+            <div class="invalid-feedback" *ngIf="submitted && formControl.username.errors?.required">
+              <p>Username is required</p>
+            </div>
+            <div class="invalid-feedback" *ngIf="submitted && formControl.username.errors?.minlength">
+              <p>Username must be at leat 6 characters</p>
+            </div>
+          </div>
+          <div class="form-row mt-3">
+            <!-- Email input -->
+            <label for="useremail">Email</label>
+            <input type="email" class="form-control"
+              [ngClass]="{'is-invalid': submitted && formControl.email.errors}"
+              formControlName="email">
+              <div class="invalid-feedback" *ngIf="submitted && formControl.email.errors?.required">
+                <p>Email is required</p>
+              </div>
+              <div class="invalid-feedback" *ngIf="submitted && formControl.email.errors?.email">
+                <p>Email must be a valid email</p>
+              </div>
+          </div>
+          <div class="form-row mt-3">
+            <!-- Password input -->
+            <label for="userpassword">Password</label>
+            <input type="password" class="form-control"
+            [ngClass]="{'is-invalid': submitted && formControl.password.errors}"
+              formControlName="password">
+              <div class="invalid-feedback" *ngIf="submitted && formControl.password.errors?.required">
+                <p>Password is required</p>
+              </div>
+              <div class="invalid-feedback" *ngIf="submitted && formControl.password.errors?.minlength">
+                <p>Password must be at least 8 characters</p>
+              </div>
+            </div>
+          </div>
+          
+        <p>Already have an account ? <a routerLink="/auth/sign-in">Sign-In</a></p>
+        <button class="btn btn-sm btn-block">Create</button>
+      </form>
+    </div>
+  </div>
+  </div>
+</div>

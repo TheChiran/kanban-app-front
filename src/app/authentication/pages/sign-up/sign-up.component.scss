@@ -1,0 +1,13 @@
+@import '../../../common-styles/common.scss';
+.container{
+    .card{
+        @include make-perfect-center;
+        // background: $card-bg;
+
+        .card-body{
+            button{
+                background: $card-btn-bg;
+            }
+        }
+    }
+}
