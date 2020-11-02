@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./choose.component.scss']
 })
 export class ChooseComponent implements OnInit {
-
+  header="Why choose us?";
+  contents=["Flexibility","Portability","Afordable"];
   constructor() { }
 
   ngOnInit(): void {

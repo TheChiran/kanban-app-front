@@ -1,7 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;0,500;1,500&display=swap');
+
+$font-family-1: 'Raleway', sans-serif;
 $card-bg: #C4C4C4;
 $card-btn-bg: #28C2B0;
 $primary-bg-1: #194651;
 $primary-bg-2: #0B4737;
+$text-color-1: #fff;
 @mixin make-perfect-center {
         position: absolute;
         top: 50%;

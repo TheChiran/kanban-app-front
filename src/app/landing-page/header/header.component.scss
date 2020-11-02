@@ -1,0 +1,14 @@
+@import '../../common-styles/common.scss';
+.container{
+    h3,h4{
+        color: $text-color-1;
+        font-family: 'Times New Roman', Times, serif;
+    }
+    .row{
+        button{
+            background: $primary-bg-1 !important;
+        }
+    }
+    font-family: $font-family-1 !important;
+    font-weight: 400;
+}

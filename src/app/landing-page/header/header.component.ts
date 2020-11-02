@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
+  header = "KanbanBoard";
+  headerContent = "Makes your project work easy by tracking up you project status."
   constructor() { }
 
   ngOnInit(): void {

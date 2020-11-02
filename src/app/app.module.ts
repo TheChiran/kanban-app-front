@@ -12,6 +12,7 @@ import { ProjectFlexibilityComponent } from './landing-page/project-flexibility/
 import { TeamWorkComponent } from './landing-page/team-work/team-work.component';
 import { ThinkComponent } from './landing-page/think/think.component';
 import { ChooseComponent } from './landing-page/choose/choose.component';
+import { SocialComponent } from './landing-page/footer/social/social.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ChooseComponent } from './landing-page/choose/choose.component';
     ProjectFlexibilityComponent,
     TeamWorkComponent,
     ThinkComponent,
-    ChooseComponent
+    ChooseComponent,
+    SocialComponent
   ],
   imports: [
     BrowserModule,

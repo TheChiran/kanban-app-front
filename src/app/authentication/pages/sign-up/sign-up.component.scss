@@ -3,10 +3,12 @@
     .card{
         @include make-perfect-center;
         // background: $card-bg;
+        color: $primary-bg-1;
 
         .card-body{
             button{
-                background: $card-btn-bg;
+                background: $primary-bg-1;
+                color: #fff;
             }
         }
     }
