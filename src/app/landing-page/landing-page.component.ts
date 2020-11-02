@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-landing-page',
@@ -11,5 +11,11 @@ export class LandingPageComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  // @HostListener('window:scroll', ['$event']) 
+  //   scrollHandler(event) {
+  //     // console.debug("Scroll Event");
+  //     console.log('Scroll Called!');
+  //   }
 
 }

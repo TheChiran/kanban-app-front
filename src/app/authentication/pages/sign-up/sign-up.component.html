@@ -44,6 +44,9 @@
               <div class="invalid-feedback" *ngIf="submitted && formControl.password.errors?.minlength">
                 <p>Password must be at least 8 characters</p>
               </div>
+              <div class="invalid-feedback" *ngIf="submitted && formControl.password.errors?.pattern">
+                <p>Password contain special characters, numbers, upper and lower case</p>
+              </div>
             </div>
           </div>
           

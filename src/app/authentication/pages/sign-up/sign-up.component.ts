@@ -32,7 +32,8 @@ export class SignUpComponent implements OnInit {
       ]],
       password: ['',[
         Validators.required,
-        Validators.minLength(8)
+        Validators.minLength(8),
+        Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')
       ]]
     })
   }
@@ -49,7 +50,8 @@ export class SignUpComponent implements OnInit {
       return false;
     }else{
       //some code
-      console.log(this.signUpForm.value);
+      // console.log(this.signUpForm.value.password);
+      // this.checkPassword(this.signUpForm.value.password);
       this.resetForm();
     }
   }
@@ -58,6 +60,13 @@ export class SignUpComponent implements OnInit {
   resetForm(){
     this.signUpForm.reset();
   }
+
+  //check wether password has character number lower and uppercase
+  // checkPassword(password){
+  //   // let password = this.signUpForm.value.password;
+  //   console.log(password);
+  //   return password.match(/^[^a-zA-Z0-9]+$/) ? console.log(true) : console.log(false);
+  // }
 
 
 }
