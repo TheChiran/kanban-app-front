@@ -1,1 +1,7 @@
-<p>social works!</p>
+<div class="social" style="display: flex;">
+  <div class="col-md-2" *ngFor="let social of socialMediaLinks">
+    <a href="{{social.link}}">
+      <img src="{{social.image}}" alt="" height="40px" width="40px">
+    </a>
+  </div>
+</div>
