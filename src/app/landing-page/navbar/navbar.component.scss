@@ -3,4 +3,32 @@
      @include makeTransparent;
     // border-bottom: 1px solid rgba(255,255,255,0.3);
     box-shadow: none;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    transition: 0.5s;
+    img{
+        transition: 0.5s;
+    }
+    h4{
+        transition: 0.5s;
+    }
+
+}
+.navbar-fixed{
+    background: #fff !important;
+    h4,a{
+        color: $primary-bg-1 !important;
+    }
+    img{
+        width: 50px !important;
+        height: 50px !important;
+    }
+    h4{
+        font-size: 20px !important;
+    }
+    button{
+        background: $primary-bg-1;
+    }
 }
