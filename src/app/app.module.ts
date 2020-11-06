@@ -13,6 +13,7 @@ import { TeamWorkComponent } from './landing-page/team-work/team-work.component'
 import { ThinkComponent } from './landing-page/think/think.component';
 import { ChooseComponent } from './landing-page/choose/choose.component';
 import { SocialComponent } from './landing-page/footer/social/social.component';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { SocialComponent } from './landing-page/footer/social/social.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AuthenticationModule
+    AuthenticationModule,
+    DashboardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
