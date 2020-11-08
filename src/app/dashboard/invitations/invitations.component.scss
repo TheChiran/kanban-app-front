@@ -1,0 +1,23 @@
+@import '../../common-styles/common.scss';
+
+.container{
+    .row{
+        .card{
+            .card-body{
+                table{
+                    tr{
+                        td{
+                            color: $primary-bg-1 !important;
+                            font-size: 18px !important;
+
+                            button{
+                                box-shadow: none !important;
+                                border: none !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

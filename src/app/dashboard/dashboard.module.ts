@@ -15,6 +15,10 @@ import { PanelComponent } from './panel/panel.component';
 import { ProjectComponent } from './project/project.component';
 import { InvitationsComponent } from './invitations/invitations.component';
 import { TitleComponent } from './title/title.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { DetailsComponent } from './project/details/details.component';
+
+
 
 
 
@@ -32,10 +36,13 @@ import { TitleComponent } from './title/title.component';
     PanelComponent, 
     ProjectComponent, 
     InvitationsComponent, 
-    TitleComponent],
+    TitleComponent,
+    DetailsComponent
+  ],
   imports: [
     DashboardRoutingModule,
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ]
 })
 export class DashboardModule { }

@@ -1,0 +1,53 @@
+<app-title [title]="title"></app-title>
+<div class="row mt-5">
+    <div class="col-md-2 mt-1">
+        <button class="btn btn-block btn-md btn-primary">Project Name</button>
+    </div>
+    <div class="col-md-2 mt-1">
+        <button class="btn btn-block btn-md btn-primary">Project Details</button>
+    </div>
+    <div class="col-md-2 mt-1">
+        <button class="btn btn-block btn-md btn-primary">Add</button>
+    </div>
+</div>
+<div class="container">
+    <div class="row mt-5">
+        <div class="card col-md-3 mr-1 mt-1" *ngFor="let project of projectList;let i = index">
+            <h2>{{project.title}}</h2>
+            <div class="card-body" *ngFor="let content of project.contents;">
+                <div data-toggle="modal" data-target="#titleModal"
+                class="content btn btn-md btn-block" (click)="setName(content,project.title)">
+                    {{content}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- select title modal box -->
+  <!-- Modal -->
+  <div class="modal fade" id="titleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Change Content Title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-row">
+              <select name="" id="" class="form-control col-md-4" (change)="setTitle($event.target.value)">
+                  <option value="">Please Choose</option>
+                  <option value="{{title}}" *ngFor="let title of projectTitle" >{{title}}</option>
+              </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary btn-sm" (click)="changeContentTitle()">Change</button>
+        </div>
+      </div>
+    </div>
+  </div>

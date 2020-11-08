@@ -2,9 +2,10 @@ import { ProjectComponent } from './project/project.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { DashboardComponent } from './dashboard.component';
 import { InvitationsComponent } from './invitations/invitations.component';
 import { PanelComponent } from './panel/panel.component';
+import { DetailsComponent } from './project/details/details.component';
+
 
 const routes: Routes = [
   // {
@@ -35,6 +36,10 @@ const routes: Routes = [
   {
     path: 'project',
     component: ProjectComponent
+  },
+  {
+    path: 'project/:id',
+    component: DetailsComponent
   },
   {
     path: 'invitations',

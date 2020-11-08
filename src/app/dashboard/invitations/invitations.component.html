@@ -1,1 +1,29 @@
 <app-title [title]="title"></app-title>
+<div class="container">
+    <div class="row mt-5">
+        <div class="card col-md-6">
+          <div class="card-body">
+            <table class="table">
+              <tr *ngFor="let project of projectInvitation;let i = index">
+                <td>{{project.name}}</td>
+                <td>{{project.invitedBy}}</td>
+                <td>
+                  <button (click)="acceptInvitation(project,i)"><i class="fa fa-check" aria-hidden="true"></i>
+                  </button>
+                </td>
+                <td>
+                  <button (click)="deleteInvitation(project,i)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                </td>
+              </tr>
+            </table>
+            <!-- <div class="contents btn btn-block btn-md">
+                      <span>{{project.name}}</span>
+                      <span>{{project.invitedBy}}</span>
+                      <span><button><i class="fa fa-check" aria-hidden="true"></i>
+                      </button></span>
+                      <span><button><i class="fa fa-trash" aria-hidden="true"></i></button></span>
+                  </div> -->
+          </div>
+        </div>
+      </div>
+</div>
