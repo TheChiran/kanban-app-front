@@ -1,13 +1,15 @@
 <app-title [title]="title"></app-title>
 <div class="row mt-5">
     <div class="col-md-2 mt-1">
-        <button class="btn btn-block btn-md btn-primary">Project Name</button>
+        <button class="btn btn-block btn-md btn-primary common-btn" disabled>Project Name</button>
     </div>
     <div class="col-md-2 mt-1">
-        <button class="btn btn-block btn-md btn-primary">Project Details</button>
+        <button class="btn btn-block btn-md btn-primary common-btn" 
+        data-toggle="modal" data-target="#addNewTitle">Add Title</button>
     </div>
     <div class="col-md-2 mt-1">
-        <button class="btn btn-block btn-md btn-primary">Add</button>
+        <button class="btn btn-block btn-md btn-primary common-btn"
+        data-toggle="modal" data-target="#addNewContent">Add Content</button>
     </div>
 </div>
 <div class="container">
@@ -16,7 +18,7 @@
             <h2>{{project.title}}</h2>
             <div class="card-body" *ngFor="let content of project.contents;">
                 <div data-toggle="modal" data-target="#titleModal"
-                class="content btn btn-md btn-block" (click)="setName(content,project.title)">
+                class="content btn btn-md btn-block common-btn" (click)="setName(content,project.title)">
                     {{content}}
                 </div>
             </div>
@@ -24,8 +26,8 @@
     </div>
 </div>
 
-<!-- select title modal box -->
-  <!-- Modal -->
+
+  <!-- Modal for changing content title-->
   <div class="modal fade" id="titleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -45,9 +47,93 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary btn-sm" (click)="changeContentTitle()">Change</button>
+          <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary btn-sm common-btn" (click)="changeContentTitle()">Change</button>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for creating new title-->
+  <div class="modal fade" id="addNewTitle" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Create Title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form [formGroup]="createTitleForm" (ngSubmit)="createNewtitle()">
+          <div class="modal-body">
+            <div class="form-row">
+                <label for="Title">Title</label>
+                <input type="text" class="form-control"
+                [ngClass]="{'is-invalid': createTitleSubmitted && titleFormControl.titleName.errors}"
+                formControlName="titleName">
+                <div class="invalid-feedback" *ngIf="createTitleSubmitted && titleFormControl.titleName.errors?.required">
+                  <p>This field is required</p>
+                </div>
+                <!-- <div class="invalid-feedback" *ngIf="createTitleSubmitted && titleFormControl.titleName.errors?.pattern">
+                  <p>Only Alphabets are allowed</p>
+                </div> -->
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary btn-sm common-btn">Create</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for adding new content to title-->
+  <div class="modal fade" id="addNewContent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add New Content</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form [formGroup]="createNewContentForm" (ngSubmit)="createNewContent()">
+          <div class="modal-body">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="Content">Content</label>
+                <input type="text" class="form-control"
+                [ngClass]="{'is-invalid': createNewContentSubmitted && newContentFormControl.contentName.errors}"
+                formControlName="contentName">
+                <div class="invalid-feedback" *ngIf="createNewContentSubmitted && newContentFormControl.contentName.errors?.required">
+                  <p>Content Name is Required</p>
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                  <label for="Title">Title</label>
+                  <select name="" id="" class="form-control" 
+                  [ngClass]="{'is-invalid': createNewContentSubmitted && newContentFormControl.contentTitle.errors}"
+                  formControlName="contentTitle">
+                    <option value="">Please Choose</option>
+                    <option value="{{title}}" *ngFor="let title of projectTitle" >{{title}}</option>
+                    <div class="invalid-feedback" *ngIf="createNewContentSubmitted && newContentFormControl.contentTitle.errors?.required">
+                      <p>Content Title is Required</p>
+                    </div>
+                </select>
+                
+                </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary btn-sm common-btn">Add</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

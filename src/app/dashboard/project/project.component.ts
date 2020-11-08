@@ -50,7 +50,7 @@ export class ProjectComponent implements OnInit {
       return false;
     }else{
       //do some code
-      console.log(this.projectSubmitForm);
+      // console.log(this.projectSubmitForm.value);
       this.resetForm();
     }
   }
