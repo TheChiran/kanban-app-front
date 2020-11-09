@@ -2,11 +2,16 @@
     <app-navbar></app-navbar>
 </div>
 <div class="contents" style="display: flex;">
-    <div class="side-nav" style="width: 15%; background: #fff !important;margin: 0;height: 100vh;padding-top: 0;">
+    <div [ngClass]="sidenavStyle"  style="width: 15%; background: #fff !important;margin: 0;height: 100vh;padding-top: 0; overflow: hidden;">
         <app-sidenav></app-sidenav>
     </div>
     <div class="content" style="background: rgba(255, 255, 255, 0.8) !important; width: 85% !important;">
         <div class="container">
+            <span>
+                <a (click)="activateSideNav()">
+                    <i class="{{icon}}" aria-hidden="true"></i>
+                </a>
+            </span>
             <router-outlet></router-outlet>
         </div>
     </div>

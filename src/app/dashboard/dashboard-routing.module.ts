@@ -1,10 +1,11 @@
 import { ProjectComponent } from './project/project.component';
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { InvitationsComponent } from './invitations/invitations.component';
 import { PanelComponent } from './panel/panel.component';
 import { DetailsComponent } from './project/details/details.component';
+import { UserSettingComponent } from './user-setting/user-setting.component';
 
 
 const routes: Routes = [
@@ -44,7 +45,12 @@ const routes: Routes = [
   {
     path: 'invitations',
     component: InvitationsComponent
+  },
+  {
+    path: 'user-setting',
+    component: UserSettingComponent
   }
+  
 ];
 
 @NgModule({

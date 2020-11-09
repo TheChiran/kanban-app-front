@@ -6,8 +6,6 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { ButtonComponent } from './button/button.component';
 import { DashboardCardComponent } from './dashboard-card/dashboard-card.component';
-import { LogoComponent } from './navbar/logo/logo.component';
-import { LinkComponent } from './navbar/link/link.component';
 
 import { UserCardComponent } from './sidenav/user-card/user-card.component';
 import { NavlinkComponent } from './sidenav/navlink/navlink.component';
@@ -17,6 +15,7 @@ import { InvitationsComponent } from './invitations/invitations.component';
 import { TitleComponent } from './title/title.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DetailsComponent } from './project/details/details.component';
+import { UserSettingComponent } from './user-setting/user-setting.component';
 
 
 
@@ -28,16 +27,15 @@ import { DetailsComponent } from './project/details/details.component';
     NavbarComponent, 
     SidenavComponent, 
     ButtonComponent, 
-    DashboardCardComponent, 
-    LogoComponent, 
-    LinkComponent, 
+    DashboardCardComponent,
     UserCardComponent, 
     NavlinkComponent, 
     PanelComponent, 
     ProjectComponent, 
     InvitationsComponent, 
     TitleComponent,
-    DetailsComponent
+    DetailsComponent,
+    UserSettingComponent
   ],
   imports: [
     DashboardRoutingModule,

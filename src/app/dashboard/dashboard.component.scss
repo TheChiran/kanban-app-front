@@ -1,0 +1,61 @@
+@import '../common-styles/common.scss';
+
+.icon{
+    font-size: 20px !important;
+    color: $primary-bg-1 !important;
+    cursor: pointer;
+}
+
+// .deactive-side-nav{
+//     left: -35% !important;
+//     // width: 30% !important;
+// }
+@media only screen and (min-width: 1440px) and (max-width: 1536px) {
+    .contents{
+        .side-nav{
+            width: 20% !important;
+        }
+        .content{
+            width: 80% !important;
+        }
+
+    }
+  }
+  @media only screen and (min-width: 1200px) and (max-width: 1399px) {
+    .contents{
+        .side-nav{
+            width: 25% !important;
+        }
+        .content{
+            width: 75% !important;
+        }
+
+    }
+  }
+
+  //have to solve problem for lower than 1024px displays
+  @media only screen and (min-width: 1000px) and (max-width: 1199px) {
+    .contents{
+        height: 100%;
+        .active-side-nav{
+            left: 35% !important;
+            width: 35% !important;
+        }
+        .side-nav{
+            width: 35% !important;
+            // height: 100% !important;
+            // margin-bottom: 100px !important;
+            // position: ;
+            // display: none;
+            position: absolute;
+            z-index: 1;
+            left: -35%;
+            // transition: 1s;
+        }
+        .content{
+            width: 75% !important;
+        }
+
+    }
+  }
+  
