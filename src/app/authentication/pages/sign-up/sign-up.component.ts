@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -10,7 +12,9 @@ export class SignUpComponent implements OnInit {
   submitted:boolean = false;
   signUpForm:FormGroup;
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
   ) {
     this.registerForm();
    }
@@ -49,10 +53,20 @@ export class SignUpComponent implements OnInit {
     if(!this.signUpForm.valid){
       return false;
     }else{
+      this.authService.signUp(this.signUpForm.value)
+        .subscribe((res)=>{
+          alert('Congratulation! Registration Completed');
+          this.resetForm();
+          this.router.navigate(['auth'])
+        },
+        (error)=>{
+          this.resetForm();
+          alert('Something went wrong! Please try again');
+        })
       //some code
       // console.log(this.signUpForm.value.password);
       // this.checkPassword(this.signUpForm.value.password);
-      this.resetForm();
+      // this.resetForm();
     }
   }
 

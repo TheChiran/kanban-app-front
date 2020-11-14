@@ -10,10 +10,10 @@
 </div>
 <div class="row mt-5">
     <div class="col-md-6">
-        <app-dashboard-card [content] = "totalProject"></app-dashboard-card>
+        <app-dashboard-card [content] = "totalProject" [total]="totalProjectCount"></app-dashboard-card>
     </div>
     <div class="col-md-6">
-        <app-dashboard-card [content] = "totalInvitation"></app-dashboard-card>
+        <app-dashboard-card [content] = "totalInvitation" [total]="totalProjectRequestCount"></app-dashboard-card>
     </div>
 </div>
 
@@ -40,7 +40,7 @@
                 <p>Project Name is requried</p>
               </div>
             </div>
-            <div class="from-row">
+            <!-- <div class="from-row">
               <label for="Project Type">Project Type</label>
               <select name="" id="" class="form-control col-md-6"
                 [ngClass]="{'is-invalid': submitted && formControl.projectType.errors}" formControlName="projectType">
@@ -49,7 +49,7 @@
               <div class="invalid-feedback" *ngIf="submitted && formControl.projectType.errors?.required">
                 <p>Project Type is requried</p>
               </div>
-            </div>
+            </div> -->
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary btn-md common-btn" data-dismiss="modal">Close</button>

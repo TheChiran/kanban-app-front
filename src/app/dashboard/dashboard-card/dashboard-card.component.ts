@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class DashboardCardComponent implements OnInit {
   @Input('content') content;
+  @Input('total') total;
   constructor() { }
 
   ngOnInit(): void {

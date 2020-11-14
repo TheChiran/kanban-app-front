@@ -14,7 +14,8 @@ import { ThinkComponent } from './landing-page/think/think.component';
 import { ChooseComponent } from './landing-page/choose/choose.component';
 import { SocialComponent } from './landing-page/footer/social/social.component';
 import { DashboardModule } from './dashboard/dashboard.module';
-
+import { HttpClientModule } from '@angular/common/http';
+import { JwtModule } from '@auth0/angular-jwt';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +33,17 @@ import { DashboardModule } from './dashboard/dashboard.module';
     BrowserModule,
     AppRoutingModule,
     AuthenticationModule,
-    DashboardModule
+    DashboardModule,
+    HttpClientModule,
+    JwtModule.forRoot({
+      config:{
+        authScheme:'auth-token',
+        headerName: 'Authorization',
+        tokenGetter:()=>{
+          return localStorage.getItem('token')
+        }
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

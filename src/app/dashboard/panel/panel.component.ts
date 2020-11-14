@@ -1,5 +1,7 @@
+
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ProjectService } from '../project/project.service';
 
 @Component({
   selector: 'app-panel',
@@ -10,22 +12,28 @@ export class PanelComponent implements OnInit {
   title:string = "Dashboard";
   createProject={name: "Create Project", link: "#"};
   projectList={name: "Project List", link: "/dashboard/project"};
-  totalProject ={title: "Total Project", icon: "fa fa-file" ,count: 18};
-  totalInvitation ={title: "Total Invitation", icon: "fa fa-envelope" ,count: 18};
+  totalProject ={title: "Total Project", icon: "fa fa-file"};
+  totalInvitation ={title: "Total Invitation", icon: "fa fa-envelope"};
   
   modalTitle:string="Create Project";
   projectType = [
     {name: "Select Type",value: ""},
     {name: "Personal",value: "Personal"},
     {name: "Team",value: "Team"}
-  ]
+  ];
   submitted:boolean = false;
   projectSubmitForm:FormGroup;
-
+  totalProjectCount;
+  totalProjectRequestCount;
+  
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private projectService: ProjectService
   ) {
     this.submitForm();
+    // console.log(localStorage.getItem('token'));
+    this.getTotalProjectRequest();
+    this.getTotalWorkingProject();
    }
 
   ngOnInit(): void {
@@ -58,5 +66,38 @@ export class PanelComponent implements OnInit {
   resetForm(){
     this.projectSubmitForm.reset();
   }
+
+  //method to get total project request
+  getTotalProjectRequest(){
+    this.projectService.totalProjectCount()
+    .subscribe((res)=>{
+      this.totalProjectCount = res;
+      this.totalProjectCount = this.totalProjectCount.total;
+      // console.log(res);
+      // console.log(localStorage.getItem('token'));
+    },
+    (error)=>{
+
+    }
+    )
+  }
+
+  //method to get total project request
+  getTotalWorkingProject(){
+    this.projectService.totalProjectRequestCount()
+    .subscribe((res)=>{
+      // console.log(res);
+      this.totalProjectRequestCount = res;
+      this.totalProjectRequestCount = this.totalProjectRequestCount.total;
+
+    },
+    (error)=>{
+      //manage error
+    }
+    )
+  }
+
+  
+  
 
 }
