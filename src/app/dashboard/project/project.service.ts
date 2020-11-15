@@ -10,20 +10,20 @@ import { catchError, map } from 'rxjs/operators';
 })
 export class ProjectService {
   private URL = `${environment.apiURI}/project`;
-  private headers;
+  private headers = new HttpHeaders().set("auth-token",localStorage.getItem('token'));
   private token;
   constructor(
     private http: HttpClient
   ) {
-    this.setToken();
+    // this.setToken();
    }
 
   //method to set token
-  setToken(){
-    this.token =  localStorage.getItem('token');
-    // console.log(this.token);
-    this.headers =  new HttpHeaders().set("auth-token",this.token);
-  }
+  // setToken(){
+  //   this.token =  localStorage.getItem('token');
+  //   console.log(this.token);
+  //   this.headers;
+  // }
   //method to create project
   createProject(projectName){
     const url = `${this.URL}/create`;

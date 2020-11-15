@@ -20,6 +20,8 @@ export class DetailsComponent implements OnInit {
   createNewContentForm: FormGroup;
   newTitleForContentForm: FormGroup;
   titleDeleteForm: FormGroup;
+  inviteMemberSubmitted = false;
+  inviteMemberForm: FormGroup;
   private response;
   private projectId;
   private titleId;
@@ -32,6 +34,7 @@ export class DetailsComponent implements OnInit {
   ) { 
     this.submitCreateTitleForm();
     this.submitCreateNewContentForm();
+    this.inviteMemberFormGroup();
   }
 
   ngOnInit(): void {
@@ -210,6 +213,7 @@ export class DetailsComponent implements OnInit {
       titleId: [`${id}`]
     });
   }
+  //method to delete a title
   deleteTitle(id){
     if(confirm(`Are you sure? You don't need this anymore?`)){
       this.setDeleteTitleForm(id);
@@ -222,6 +226,39 @@ export class DetailsComponent implements OnInit {
       })
     }
   }
+
+  //method to create invite member form
+  inviteMemberFormGroup(){
+    this.inviteMemberForm = this.fb.group({
+      recieverEmail: ['',[
+        Validators.required,
+        Validators.email,
+        Validators.min(6)
+      ]],
+      projectName: [''],
+      projectId: ['']
+    })
+  }
+  //method to get create title form
+  get inviteMemberFormControl(){
+    return this.inviteMemberForm.controls;
+  }
+  //method to submit invitation member email
+  sendInvitation(){
+    this.inviteMemberSubmitted = true;
+    if(!this.inviteMemberForm.valid) return false;
+    else{
+      this.inviteMemberForm.patchValue({projectName: this.projectName,projectId: this.getProjectId()});
+      // console.log(this.inviteMemberForm.value);
+      this.projectService.inviteProject(this.inviteMemberForm.value)
+      .subscribe((res)=>{
+        this.response = res;
+        alert(this.response.message);
+        this.inviteMemberForm.reset();
+      })
+    }
+  }
+
   
 
 }

@@ -18,10 +18,21 @@ export class SignInComponent implements OnInit {
     private router: Router
   ) {
     this.submitForm();
+    // this.resetToken();
+    // console.log(localStorage.getItem('token'));
+    // localStorage.removeItem('token');
+    // console.log(localStorage.getItem('token'));
+    
+
    }
 
   ngOnInit(): void {
+    localStorage.clear();
   }
+  //reset token
+  // resetToken(){
+  //   localStorage.removeItem('token');
+  // }
 
   //upload user form values
   submitForm(){
@@ -57,7 +68,9 @@ export class SignInComponent implements OnInit {
           this.resetForm();
           // console.log(res);
           this.token = res;
+          localStorage.removeItem('token');
           localStorage.setItem('token',this.token.accessToken);
+          
           // console.log(localStorage.getItem('token'));
           this.router.navigate(['dashboard']);
         },(error)=>{
