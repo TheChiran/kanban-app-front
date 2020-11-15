@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthenticationComponent implements OnInit {
 
-  constructor() { }
+  constructor() { 
+    this.resetToken();
+  }
 
   ngOnInit(): void {
+  }
+  
+  //reset token
+  resetToken(){
+    localStorage.removeItem('token');
   }
 
 }

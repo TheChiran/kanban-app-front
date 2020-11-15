@@ -1,3 +1,4 @@
+import { UserService } from './../user/user.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -15,10 +16,28 @@ export class SidenavComponent implements OnInit {
     "icon": 'fa fa-list'}
   ];
   button = {name: 'Logout', link: '/logout', isBlock: true};
-  
-  constructor() { }
+  userProfile;
+  constructor(
+    private userService: UserService
+  ) { 
+    this.getUserProfile();
+  }
 
   ngOnInit(): void {
+  }
+
+  
+//method to get user information
+  getUserProfile(){
+    this.userService.getUserProfile()
+    .subscribe((res)=>{
+      this.userProfile = res;
+      this.userProfile = this.userProfile.user;
+      // console.log(this.userProfile);
+    }),
+    (error)=>{
+      //manage error
+    }
   }
 
 }

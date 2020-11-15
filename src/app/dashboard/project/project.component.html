@@ -8,10 +8,10 @@
 <div class="container">
   
   <div class="row mt-5">
-      <div class="card col-md-4">
+      <div class="card col-md-6">
           <div class="card-body" *ngFor="let project of projectList;let i = index">
               <div class="project btn btn-block btn-md common-btn" style="cursor: default;">
-                  <a class="common-btn" style="font-size: 15px;" routerLink="/dashboard/project/{{project.id}}">
+                  <a class="common-btn" style="font-size: 15px;" routerLink="/dashboard/project/{{project._id}}">
                   {{project.name}}
               </a>
                   <span><button class="ml-3" (click)="deleteProject(i,project)">
@@ -48,7 +48,7 @@
                 <p>Project Name is requried</p>
               </div>
             </div>
-            <div class="from-row">
+            <!-- <div class="from-row">
               <label for="Project Type">Project Type</label>
               <select name="" id="" class="form-control col-md-6"
                 [ngClass]="{'is-invalid': submitted && formControl.projectType.errors}" formControlName="projectType">
@@ -57,7 +57,7 @@
               <div class="invalid-feedback" *ngIf="submitted && formControl.projectType.errors?.required">
                 <p>Project Type is requried</p>
               </div>
-            </div>
+            </div> -->
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary btn-md common-btn" data-dismiss="modal">Close</button>

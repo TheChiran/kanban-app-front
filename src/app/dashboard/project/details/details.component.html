@@ -1,7 +1,7 @@
 <app-title [title]="title"></app-title>
 <div class="row mt-5">
-    <div class="col-md-2 mt-1">
-        <button class="btn btn-block btn-md btn-primary common-btn" disabled>Project Name</button>
+    <div class="col-md-5 mt-1">
+        <button class="btn btn-block btn-md btn-primary common-btn" disabled>{{projectName}}</button>
     </div>
     <div class="col-md-2 mt-1">
         <button class="btn btn-block btn-md btn-primary common-btn" 
@@ -11,14 +11,19 @@
         <button class="btn btn-block btn-md btn-primary common-btn"
         data-toggle="modal" data-target="#addNewContent">Add Content</button>
     </div>
+    <div class="col-md-2 mt-1">
+      <button class="btn btn-block btn-md btn-primary common-btn"
+      data-toggle="modal" data-target="#inviteMember">Invite Member</button>
+  </div>
 </div>
 <div class="container">
     <div class="row mt-5">
-        <div class="card col-md-3 mr-1 mt-1" *ngFor="let project of projectList;let i = index">
-            <h2>{{project.title}}</h2>
-            <div class="card-body" *ngFor="let content of project.contents;">
+        <div class="card col-md-3 mr-1 mt-1" *ngFor="let title of projectTitle;let i = index">
+              <h2>{{title.name}} <span (click)="deleteTitle(title._id)"style="cursor: pointer;"><i class="fa fa-trash-o" aria-hidden="true"></i></span></h2>
+            <div class="card-body" *ngFor="let content of title.contents">
                 <div data-toggle="modal" data-target="#titleModal"
-                class="content btn btn-md btn-block common-btn" (click)="setName(content,project.title)">
+                class="content btn btn-md btn-block common-btn"
+                (click)="setPreviousTitleId(title._id,content)">
                     {{content}}
                 </div>
             </div>
@@ -34,15 +39,16 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Change Content Title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button 
+          type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
           <div class="form-row">
-              <select name="" id="" class="form-control col-md-4" (change)="setTitle($event.target.value)">
+              <select name="" id="" class="form-control col-md-4" (change)="setTitleId($event.target.value)">
                   <option value="">Please Choose</option>
-                  <option value="{{title}}" *ngFor="let title of projectTitle" >{{title}}</option>
+                  <option value="{{title.name}}" *ngFor="let title of newProjectTitle" >{{title.name}}</option>
               </select>
           </div>
         </div>
@@ -106,9 +112,9 @@
               <div class="form-group">
                 <label for="Content">Content</label>
                 <input type="text" class="form-control"
-                [ngClass]="{'is-invalid': createNewContentSubmitted && newContentFormControl.contentName.errors}"
-                formControlName="contentName">
-                <div class="invalid-feedback" *ngIf="createNewContentSubmitted && newContentFormControl.contentName.errors?.required">
+                [ngClass]="{'is-invalid': createNewContentSubmitted && newContentFormControl.titleContent.errors}"
+                formControlName="titleContent">
+                <div class="invalid-feedback" *ngIf="createNewContentSubmitted && newContentFormControl.titleContent.errors?.required">
                   <p>Content Name is Required</p>
                 </div>
               </div>
@@ -118,9 +124,9 @@
                   <label for="Title">Title</label>
                   <select name="" id="" class="form-control" 
                   [ngClass]="{'is-invalid': createNewContentSubmitted && newContentFormControl.contentTitle.errors}"
-                  formControlName="contentTitle">
+                  formControlName="contentTitle" (change)="setTitleId($event.target.value)">
                     <option value="">Please Choose</option>
-                    <option value="{{title}}" *ngFor="let title of projectTitle" >{{title}}</option>
+                    <option value="{{title.name}}" *ngFor="let title of projectTitle">{{title.name}}</option>
                     <div class="invalid-feedback" *ngIf="createNewContentSubmitted && newContentFormControl.contentTitle.errors?.required">
                       <p>Content Title is Required</p>
                     </div>
@@ -132,6 +138,44 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-primary btn-sm common-btn">Add</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for project invitation-->
+  <div class="modal fade" id="inviteMember" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Invite A member</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form [formGroup]="inviteMemberForm" (ngSubmit)="sendInvitation()">
+          <div class="modal-body">
+            <div class="form-row">
+                <label for="Email">Reciever Email</label>
+                <input type="text" class="form-control"
+                [ngClass]="{'is-invalid': inviteMemberSubmitted && inviteMemberFormControl.recieverEmail.errors}"
+                formControlName="recieverEmail">
+                <div class="invalid-feedback" *ngIf="inviteMemberSubmitted && inviteMemberFormControl.recieverEmail.errors?.required">
+                  <p>Member Email Is Required</p>
+                </div>
+                <div class="invalid-feedback" *ngIf="inviteMemberSubmitted && inviteMemberFormControl.recieverEmail.errors?.email">
+                  <p>Must be an email</p>
+                </div>
+                <div class="invalid-feedback" *ngIf="inviteMemberSubmitted && inviteMemberFormControl.recieverEmail.errors?.min">
+                  <p>Email Must be minimum 6 characters</p>
+                </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary btn-sm common-btn">Invite</button>
           </div>
         </form>
       </div>

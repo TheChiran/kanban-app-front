@@ -11,7 +11,9 @@ export class DashboardComponent implements OnInit {
   icon2 ='fa fa-arrow-left mt-5 icon';
   sidenavStyle = 'side-nav';
   isActivate = false;
-  constructor() { }
+  constructor() {
+    // console.log(localStorage.getItem('token'));
+   }
 
   ngOnInit(): void {
   }
