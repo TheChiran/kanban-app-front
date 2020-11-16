@@ -1,36 +1,98 @@
 <app-title [title]="title"></app-title>
 <div class="container">
     <div class="row mt-5">
-        <div class="card">
+        <div class="card col-md-5">
             <div class="card-body">
                 <div class="form-row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-10">
                         <label for="Username">Username</label>
-                        <input type="text" class="form-control">
+                        <div class="form-row">
+                            <input type="text" class="form-control col-md-8"
+                            [disabled]="isUsernameFieldDisabled" (change)="setNewUserName($event.target.value)"
+                            value={{userName}}>
+                            <div class="col-md-1"></div>
+                            <span class="col-md-1">
+                                <i class="fa fa-pencil icon" 
+                                aria-hidden="true" (click)="enableUsernameField()"></i>
+                            </span>
+                            <span class="col-md-1">
+                                <i [ngStyle]="{'display': usernameFieldSaveIconDisplay}" 
+                                class="fa fa-floppy-o icon" 
+                                aria-hidden="true" (click)="updateUserName()"></i>
+                            </span>
+                        </div>
                     </div>
-                    <div class="form-group col-md-6">
-                        <label for="Image">Image</label>
-                        <input type="file" class="">
+                    <div class="form-group col-md-2">
+                        
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-10">
                         <label for="Email">Email</label>
-                        <input type="email" class="form-control">
+                        <div class="form-row">
+                            <input [disabled]="isUserEmailFieldDisabled" (change)="setNewUserEmail($event.target.value)"
+                            type="email" class="form-control col-md-8" value={{userEmail}}>
+                            <div class="col-md-1"></div>
+                            <span class="col-md-1">
+                                <i class="fa fa-pencil icon" (click)="enableUserEmailField()"
+                                aria-hidden="true"></i>
+                            </span>
+                            <span class="col-md-1">
+                                <i class="fa fa-floppy-o icon" 
+                                [ngStyle]="{'display': userEmailFieldSaveIconDisplay}"
+                                (click)="updateUserEmail()"
+                                aria-hidden="true"></i>
+                            </span>
+                        </div>
                         <!-- <span><i class="fa fa-pencil" aria-hidden="true"></i></span> -->
                     </div>
                 </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="Password">Password</label>
-                        <input type="password" class="form-control">
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="form-group col-md-10">
+                            <label for="Password">New Password</label>
+                            <div class="form-row">
+                                <input type="password" [disabled]="isUserNewPasswordinputFieldDisabled"
+                                class="form-control col-md-8" (change)="setUserNewPassword($event.target.value)">
+                                <div class="col-md-1"></div>
+                                <span class="col-md-1">
+                                    <i class="fa fa-pencil icon" [ngStyle]="{'display': userOldPasswordEditIconDisplay}"
+                                    aria-hidden="true" (click)="enableUserPassswordField()"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row" [ngStyle]="{'display': userOldPasswordRowDisplay}">
+                        <div class="form-group col-md-10">
+                            <label for="Password">Old Password</label>
+                            <div class="form-row">
+                                <input type="password" (change)="setUserOldPassword($event.target.value)"
+                                class="form-control col-md-8">
+                                <div class="col-md-1"></div>
+                                <span class="col-md-1">
+                                    <i class="fa fa-floppy-o icon" 
+                                    aria-hidden="true" (click)="updateUserPassword()"></i>
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="form-row">
+                    <div class="form-group col-md-10">
+                        <label for="Image">Image</label>
+                        <div class="form-row">
+                            <input type="file" class="col-md-8">
+                            <!-- <input type="file" class=""> -->
+                            <div class="col-md-1"></div>
+                            <span class="col-md-1"><i class="fa fa-floppy-o icon" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="form-row">
                     <div class="form-group col-md-6">
                         <button class="btn btn-md btn-block">Update</button>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

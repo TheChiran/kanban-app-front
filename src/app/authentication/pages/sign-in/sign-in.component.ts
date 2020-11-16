@@ -75,7 +75,7 @@ export class SignInComponent implements OnInit {
           this.router.navigate(['dashboard']);
         },(error)=>{
           this.resetForm();
-          alert('Something went wrong');
+          alert(`Invalid user email or password! Please try again`);
         })
       
     }

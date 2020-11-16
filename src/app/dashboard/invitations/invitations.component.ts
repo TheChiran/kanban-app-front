@@ -12,6 +12,7 @@ export class InvitationsComponent implements OnInit {
   projectInvitation;
   acceptProjectForm: FormGroup;
   private response;
+  deleteProjectinvitation: FormGroup;
   constructor(
     private projectService: ProjectService,
     private fb: FormBuilder
@@ -48,10 +49,24 @@ export class InvitationsComponent implements OnInit {
       })
     }
   }
+  //method to set invitation id
+  setProjectInvitationId(projectId){
+    this.deleteProjectinvitation = this.fb.group({
+      projectId: [`${projectId}`]
+    })
+  }
   //method to reject invitation
-  deleteInvitation(project,index){
+  deleteInvitation(projectId,index){
     if(confirm('Are you sure?you want to delete this?')){
-      this.projectInvitation.splice(index,1);
+      this.setProjectInvitationId(projectId);
+      this.projectService.rejectProject(this.deleteProjectinvitation.value)
+      .subscribe((res)=>{
+        this.response = res;
+        alert(this.response.message);
+        this.projectInvitation.splice(index,1);
+        this.getProjectInvitationList();
+      // console.log(projectId);
+      })
     }
   }
 

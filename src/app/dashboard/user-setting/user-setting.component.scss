@@ -3,3 +3,12 @@
     background: $primary-bg-1 !important;
     color: #fff;
 }
+.icon{
+    font-size: 20px;
+    color: $primary-bg-1;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}

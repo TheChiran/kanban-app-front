@@ -34,6 +34,47 @@ export class UserService {
       catchError(this.errorMgmt)
     )
   }
+  //method to get user setting
+  getUserSetting(){
+    const url = `${this.URL}/setting`;
+    return this.http.get(url,{headers: this.headers}).pipe(
+      map((res: Response)=>{
+        return res || {}
+      }),
+      catchError(this.errorMgmt)
+    )
+  }
+  //method to update user name
+  updateUserName(newUserNameFormData){
+    const url = `${this.URL}/update/username`;
+    return this.http.patch(url,newUserNameFormData,{headers: this.headers}).pipe(
+      map((res: Response)=>{
+        return res || {}
+      }),
+      catchError(this.errorMgmt)
+    )
+  }
+  //method to update user email
+  updateUserEmail(newUserEmailFormData){
+    const url = `${this.URL}/update/email`;
+    return this.http.patch(url,newUserEmailFormData,{headers: this.headers}).pipe(
+      map((res: Response)=>{
+        return res || {}
+      }),
+      catchError(this.errorMgmt)
+    )
+  }
+  //method to update user email
+  updateUserPassword(newUserPasswordFormData){
+    const url = `${this.URL}/update/password`;
+    return this.http.patch(url,newUserPasswordFormData,{headers: this.headers}).pipe(
+      map((res: Response)=>{
+        return res || {}
+      }),
+      catchError(this.errorMgmt)
+    )
+  }
+  
 
   // Error handling 
   errorMgmt(error: HttpErrorResponse) {
