@@ -11,11 +11,16 @@ export class DashboardComponent implements OnInit {
   icon2 ='fa fa-arrow-left mt-5 icon';
   sidenavStyle = 'side-nav';
   isActivate = false;
+  private dashboardMainPanelWidth = '100%';
+
   constructor() {
     // console.log(localStorage.getItem('token'));
    }
 
   ngOnInit(): void {
+  }
+  getDashboardPanelWidth(){
+    return this.dashboardMainPanelWidth;
   }
   activateSideNav(){
     if(this.isActivate){

@@ -1,11 +1,12 @@
 <div class="dashboard-navbar" style="width: 100% !important;">
     <app-navbar></app-navbar>
 </div>
-<div class="contents" style="display: flex;">
+<div class="contents" style="display: flex;margin-bottom: 200px;">
     <div [ngClass]="sidenavStyle"  style="width: 15%; background: #fff !important;margin: 0;height: 100vh;padding-top: 0; overflow: hidden;">
         <app-sidenav></app-sidenav>
     </div>
-    <div class="content" style="background: rgba(255, 255, 255, 0.8) !important; width: 85% !important;">
+    <div class="content" 
+    style="background: rgba(255, 255, 255, 0.8) !important;width: 100%;">
         <div class="container">
             <span style="display: none;" class="icon">
                 <a (click)="activateSideNav()">

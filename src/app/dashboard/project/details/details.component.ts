@@ -1,14 +1,19 @@
+import { UserService } from './../../user/user.service';
+import { ChatService } from './../../chat/chat.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProjectService } from '../project.service';
-
+import {io} from 'socket.io-client';
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.scss']
 })
 export class DetailsComponent implements OnInit {
+  private url = 'http://localhost:3000';
+  private socket;
+
   title:string = "Project Details";
   projectList;
   newProjectTitle;
@@ -27,23 +32,40 @@ export class DetailsComponent implements OnInit {
   private titleId;
   private previousTitleId;
   private contentToChange;
+  users=[];
   constructor(
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    private chatService: ChatService,
+    private userService: UserService
   ) { 
-    this.submitCreateTitleForm();
-    this.submitCreateNewContentForm();
-    this.inviteMemberFormGroup();
-  }
-
-  ngOnInit(): void {
     let id = this.activatedRoute.snapshot.paramMap.get('id');
     this.setProjectId(id);
     this.getProjectDetails(id);
-    // console.log(id);
+    this.submitCreateTitleForm();
+    this.submitCreateNewContentForm();
+    this.inviteMemberFormGroup();
+    
+    // this.chatService.newUserJoined()
+        // .subscribe(data=> this.users.push(data));
+    this.chatService.userLeftRoom()
+        .subscribe(data=>this.messageArray.push(data));
+    this.chatService.newMessageReceived()
+        .subscribe(data=>this.messageArray.push(data));
+    // console.log(this.projectName);
   }
-
+  messages:string[] = [];
+  userObject;
+  retriveUserName(){
+    this.userService.getUserName()
+    .subscribe((res)=>{
+      this.userObject = res;
+      this.setUserName(this.userObject.user);
+      this.join();
+      // console.log(this.userObject);
+    })
+  }
   //method to get project details
   getProjectDetails(id){
     this.projectService.projectDetails(id)
@@ -52,8 +74,14 @@ export class DetailsComponent implements OnInit {
       this.projectList = res;
       this.projectTitle = this.projectList.projectTitleList;
       this.projectName = this.projectList.name;
+      this.setChatRoom(this.projectName);
+      this.retriveUserName();
+      // console.log(this.userObject);
+      // console.log(this.projectName);
       // console.log(this.projectList);
     })
+    // console.log(this.projectName);
+
   }
 
   //method to set proejct id
@@ -259,6 +287,116 @@ export class DetailsComponent implements OnInit {
     }
   }
 
-  
+  private messageBoxDisplayStyle:string = 'none';
+  private messageBoxiconDisplayStyle:string = 'block';
+
+  //method to change message box display style
+  setMessageBoxDisplayStyle(messageBoxDisplayCss){
+    this.messageBoxDisplayStyle = messageBoxDisplayCss;
+  }
+  //method to get message box display style
+  getMessageBoxDisplayStyle(){
+    return this.messageBoxDisplayStyle;
+  }
+  //method to change message box display style
+  setMessageIconBoxDisplayStyle(messageBoxDisplayCss){
+    this.messageBoxiconDisplayStyle = messageBoxDisplayCss;
+  }
+  //method to get message box display style
+  getMessageIconBoxDisplayStyle(){
+    return this.messageBoxiconDisplayStyle;
+  }
+  //method to open chat box
+  openChatBox(){
+    // console.log('Clicked');
+    this.setMessageIconBoxDisplayStyle('none');
+    this.setMessageBoxDisplayStyle('block');
+  }
+  //method to close chat box
+  closeChatBox(){
+    this.setMessageIconBoxDisplayStyle('block');
+    this.setMessageBoxDisplayStyle('none');
+  }
+
+  message:string;
+  // setChatMessage(message){
+  //   this.message = message;
+  // }
+  getChatMessage(){
+    return this.message;
+  }
+  // //method to send message
+  // // sendMessage(){
+  // //   // console.log(this.getChatMessage());
+  // //   this.chatService.sendMessage(this.getChatMessage());
+  // //   // this.setChatMessage('');
+  // //   this.message = '';
+  // // }
+  // users=[];
+  // setUpConnection(){
+  //   this.socket = io(this.url);
+  //   this.socket.on('message-broadcast',(message:string,user:string)=>{
+  //     if(message){
+  //       // console.log(user);
+  //       this.users.push(user);
+  //       this.messages.push(message);
+  //     }
+  //   })
+  // }
+  // sendMessage(){
+  //   this.socket.emit('new-message',this.getChatMessage(),'chiranSWE');
+  //   this.message = '';
+  // }
+
+  ngOnInit() {
+  //   // console.log(id);
+  //   // this.chatService
+  //   //   .getMessages()
+  //   //   .subscribe((message: string) => {
+  //   //     this.messages.push(message);
+  //   //   });
+  //   // console.log(this.messages);
+  //   // this.chatService.setUpConnection();
+  //   this.setUpConnection();
+  //   // let newMessage = this.chatService.getMessages();
+  //   // this.messages.push(newMessage);
+  //   // console.log(this.messages);
+  }
+  private user:String; //variable to assign user name
+  private chatRoom:String; //variable to assign chat room name
+  //method to set username
+  setUserName(username){
+    this.user = username;
+  }
+  //method to get username
+  getUserName(){
+    return this.user;
+  }
+  //method to set chat room name
+  setChatRoom(roomName){
+    this.chatRoom = roomName;
+    // console.log(this.getChatRoom());
+  }
+  //method to get chat room name
+  getChatRoom(){
+    return this.chatRoom;
+  }
+  messageText:String;
+  messageArray:Array<{user:String,message:String}> = [];
+  join(){
+    // console.log(this.chatRoom);
+    this.chatService.joinRoom({user:this.getUserName(), room:this.getChatRoom()});
+  }
+
+  leave(){
+    this.chatService.leaveRoom({user:this.getUserName(), room:this.getChatRoom()});
+  }
+
+  sendMessage()
+  {
+    this.chatService.sendMessage({user:this.getUserName(), room:this.getChatRoom(), message:this.getChatMessage()});
+    this.message = '';
+    // console.log(this.getChatMessage());
+  }
 
 }

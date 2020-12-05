@@ -1,4 +1,44 @@
 <app-title [title]="title"></app-title>
+<div>
+  <div class="messag-main-box" [ngStyle]="{'display': getMessageBoxDisplayStyle()}">
+    <div class="message-box">
+      <div class="message-portion" style="padding: 15px;overflow: auto;">
+        <ul *ngFor="let message of messageArray">
+          <li>{{message.user}}: {{message.message}}</li>
+        </ul>
+      </div>
+      <div class="member-portion">
+        <span class="close-icon" (click)="closeChatBox()">
+          <i style="font-size: 20px;cursor: pointer;"
+          class="fa fa-window-close text-danger" aria-hidden="true"></i>
+        </span>
+        <ul style="padding: 25px 10px;">
+          <li *ngFor="let user of users" style="padding: 5px 0px;">{{user.user}}</li>
+        </ul>
+      </div>
+      <div class="send-message-box">
+        <div class="form-row">
+          <div class="input-group mb-3">
+            <input (keyup.enter)="sendMessage()"
+            [(ngModel)]="message" name="message" 
+            class="form-control" style="border-radius: 0px;margin-bottom: 0;"
+              aria-describedby="button-addon2">
+            <div class="input-group-append">
+              <button (click)="sendMessage()" class="btn btn-md btn-outline-default m-0 px-3 py-2 z-depth-0 waves-effect" type="button" id="button-addon2"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      
+  </div>
+  <div class="chat-box" [ngStyle]="{'display': getMessageIconBoxDisplayStyle()}" (click)="openChatBox()">
+    <span class="message-icon">
+      <i class="fa fa-comments" aria-hidden="true"></i>
+    </span>
+  </div>
+</div>
 <div class="row mt-5">
     <div class="col-md-5 mt-1">
         <button class="btn btn-block btn-md btn-primary common-btn" disabled>{{projectName}}</button>
@@ -16,9 +56,9 @@
       data-toggle="modal" data-target="#inviteMember">Invite Member</button>
   </div>
 </div>
-<div class="container">
+<div class="container mb-5">
     <div class="row mt-5">
-        <div class="card col-md-3 mr-1 mt-1" *ngFor="let title of projectTitle;let i = index">
+        <div class="card col-md-3 mr-1 mt-1 mb-2" *ngFor="let title of projectTitle;let i = index">
               <h2>{{title.name}} <span (click)="deleteTitle(title._id)"style="cursor: pointer;"><i class="fa fa-trash-o" aria-hidden="true"></i></span></h2>
             <div class="card-body" *ngFor="let content of title.contents">
                 <div data-toggle="modal" data-target="#titleModal"

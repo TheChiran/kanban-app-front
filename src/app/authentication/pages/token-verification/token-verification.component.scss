@@ -1,0 +1,30 @@
+@import '../../../common-styles/common.scss';
+
+.content{
+    // @include primaryBackground;
+    
+    .container{
+        // background: green !important;
+        // background: linear-gradient(270.07deg, $primary-bg-1 0.07%, $primary-bg-2 99.95%) !important;
+        .row{
+            // display: flex;
+            // justify-content: center;
+            .common-btn{
+                background: $primary-bg-1 !important;
+                color: #fff !important;
+            }
+            .card{
+                @include make-perfect-center;
+                // background: $card-bg;
+                color: $primary-bg-1;
+        
+                .card-body{
+                    button{
+                        background: $primary-bg-1;
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+}

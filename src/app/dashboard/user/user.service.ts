@@ -34,6 +34,16 @@ export class UserService {
       catchError(this.errorMgmt)
     )
   }
+  //method to get username
+  getUserName(){
+    const url = `${this.URL}/get/username`;
+    return this.http.get(url,{headers: this.headers}).pipe(
+      map((res: Response)=>{
+        return res || {}
+      }),
+      catchError(this.errorMgmt)
+    )
+  }
   //method to get user setting
   getUserSetting(){
     const url = `${this.URL}/setting`;
@@ -74,7 +84,28 @@ export class UserService {
       catchError(this.errorMgmt)
     )
   }
+
+  //request reset password token
+  requestResetToken(userForm){
+    const url = `${this.URL}/request/reset/token`;
+    return this.http.post(url,userForm,{headers: this.headers}).pipe(
+      map((res: Response)=>{
+        return res || {}
+      }),
+      catchError(this.errorMgmt)
+    )
+  }
   
+  //method to reset password
+  resetPassword(userForm){
+    const url = `${this.URL}/reset/password`;
+    return this.http.post(url,userForm,{headers: this.headers}).pipe(
+      map((res: Response)=>{
+        return res || {}
+      }),
+      catchError(this.errorMgmt)
+    )
+  }
 
   // Error handling 
   errorMgmt(error: HttpErrorResponse) {

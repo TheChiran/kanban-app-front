@@ -33,7 +33,8 @@
               "./node_modules/tailwindcss/dist/tailwind.min.css",
               "./node_modules/mdbootstrap/css/style.css",
               "./node_modules/mdbootstrap/css/bootstrap.min.css",
-              "./node_modules/mdbootstrap/css/mdb.min.css"
+              "./node_modules/mdbootstrap/css/mdb.min.css",
+              "./node_modules/sweetalert2/src/sweetalert2.scss"
             ],
             "scripts": [
               "./node_modules/mdbootstrap/js/jquery.min.js",

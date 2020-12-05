@@ -1,6 +1,91 @@
 @import './../../../common-styles/common.scss';
+
+$message-box-bg-color: green;
+$message-box-child-bg-color: #fff;
+$message-box-child-height: 90%;
+$message-box-close-icon-position: 2%;
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
 .common-btn{
     background: $primary-bg-1 !important;
     opacity: 1;
     color: #fff;
+}
+.chat-box{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: $primary-bg-1;
+    top: 80%;
+    right: 10%;
+    cursor: pointer;
+    z-index: 1;
+    .message-icon i{
+        font-size: 18px;
+        color: #fff;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+}
+.messag-main-box{
+    .message-box{
+        position: absolute;
+        background: $message-box-bg-color;
+        width: 360px;
+        height: 450px;
+        top: 46%;
+        right: 10%;
+        display: flex !important;
+        z-index: 1;
+        // border-radius: 10px;
+    
+        .message-portion{
+            width: 60%;
+            height: $message-box-child-height;
+            background: $message-box-child-bg-color;
+            // border-right: 1px solid rgba(0,0,0,0.4);
+        }
+    
+        .member-portion{
+            width: 40%;
+            background: $message-box-child-bg-color;
+            height: $message-box-child-height;
+    
+            .close-icon{
+                position: absolute;
+                top: $message-box-close-icon-position;
+                right: $message-box-close-icon-position;
+            }
+        }
+        .send-message-box{
+            width: 100%;
+            padding: 5px;
+            height: 100 - $message-box-child-height;
+            background: #fff;
+            position: absolute;
+            bottom: 0;
+            // border-top: 1px solid rgba(0,0,0,0.2);
+        }
+        
+    }
+    
 }

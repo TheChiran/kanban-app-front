@@ -16,7 +16,8 @@ import { TitleComponent } from './title/title.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DetailsComponent } from './project/details/details.component';
 import { UserSettingComponent } from './user-setting/user-setting.component';
-
+import { ChatService } from './chat/chat.service';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -37,10 +38,12 @@ import { UserSettingComponent } from './user-setting/user-setting.component';
     DetailsComponent,
     UserSettingComponent
   ],
+  providers:[ChatService],
   imports: [
     DashboardRoutingModule,
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class DashboardModule { }
