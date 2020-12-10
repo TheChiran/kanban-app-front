@@ -73,7 +73,7 @@ export class ProjectComponent implements OnInit {
     this.projectService.workingProjectList()
       .subscribe((res)=>{
         this.projectList = res;
-        console.log(this.projectList);
+        // console.log(this.projectList);
       }),
       (error)=>{
 

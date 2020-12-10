@@ -39,6 +39,7 @@
     </span>
   </div>
 </div>
+
 <div class="row mt-5">
     <div class="col-md-5 mt-1">
         <button class="btn btn-block btn-md btn-primary common-btn" disabled>{{projectName}}</button>
@@ -56,11 +57,23 @@
       data-toggle="modal" data-target="#inviteMember">Invite Member</button>
   </div>
 </div>
-<div class="container mb-5">
-    <div class="row mt-5">
-        <div class="card col-md-3 mr-1 mt-1 mb-2" *ngFor="let title of projectTitle;let i = index">
+
+<div class="mb-5">
+    <div class="mt-5 mb-5 pb-5" style="overflow: auto;display: flex;">
+        <div 
+        class="card card-content col-md-3 mr-1 mt-1 mb-2" *ngFor="let title of projectTitle;let i = index">
               <h2>{{title.name}} <span (click)="deleteTitle(title._id)"style="cursor: pointer;"><i class="fa fa-trash-o" aria-hidden="true"></i></span></h2>
-            <div class="card-body" *ngFor="let content of title.contents">
+            <!-- <div class="card-body" 
+            *ngFor="let content of title.contents">
+                <div data-toggle="modal" data-target="#titleModal"
+                class="content btn btn-md btn-block common-btn"
+                (click)="setPreviousTitleId(title._id,content)">
+                    {{content}}
+                </div>
+                <p>{{content}}</p>
+            </div> -->
+            <div class="pb-3" 
+            *ngFor="let content of title.contents">
                 <div data-toggle="modal" data-target="#titleModal"
                 class="content btn btn-md btn-block common-btn"
                 (click)="setPreviousTitleId(title._id,content)">

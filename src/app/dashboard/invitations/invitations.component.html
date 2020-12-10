@@ -1,21 +1,24 @@
 <app-title [title]="title"></app-title>
 <div class="container">
-    <div class="row mt-5">
+    <div class="row mt-5" *ngIf="getProjectInvitationLength()>0">
         <div class="card col-md-12">
           <div class="card-body">
-            <table class="table">
-              <tr *ngFor="let project of projectInvitation;let i = index">
-                <td>{{project.projectName}}</td>
-                <td>{{project.invitedBy}}</td>
-                <td>
-                  <button (click)="acceptInvitation(project.projectId,i)"><i class="fa fa-check" aria-hidden="true"></i>
-                  </button>
-                </td>
-                <td>
-                  <button (click)="deleteInvitation(project._id,i)"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                </td>
-              </tr>
-            </table>
+            <div class="table-responsive">
+              <table class="table">
+                <tr
+                *ngFor="let project of projectInvitation;let i = index">
+                  <td>{{project.projectName}}</td>
+                  <td>{{project.invitedBy}}</td>
+                  <td>
+                    <button (click)="acceptInvitation(project.projectId,i)"><i class="fa fa-check" aria-hidden="true"></i>
+                    </button>
+                  </td>
+                  <td>
+                    <button (click)="deleteInvitation(project._id,i)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                  </td>
+                </tr>
+              </table>
+            </div>
             <!-- <div class="contents btn btn-block btn-md">
                       <span>{{project.name}}</span>
                       <span>{{project.invitedBy}}</span>
@@ -25,5 +28,8 @@
                   </div> -->
           </div>
         </div>
+      </div>
+      <div class="row" *ngIf="getProjectInvitationLength()==0">
+        <h2>Sorry! There is no invitations</h2>
       </div>
 </div>

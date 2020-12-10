@@ -6,6 +6,8 @@ $message-box-child-height: 90%;
 $message-box-close-icon-position: 2%;
 ::-webkit-scrollbar {
     width: 10px;
+    height: 5px;
+    border-radius: 5px;
   }
   
   /* Track */
@@ -15,7 +17,7 @@ $message-box-close-icon-position: 2%;
   
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: #888;
+    background:rgba(136,136,136,0.5);
   }
   
   /* Handle on hover */
@@ -28,12 +30,12 @@ $message-box-close-icon-position: 2%;
     color: #fff;
 }
 .chat-box{
-    position: absolute;
+    position: fixed;
     width: 50px;
     height: 50px;
     border-radius: 50%;
     background: $primary-bg-1;
-    top: 80%;
+    top: 90%;
     right: 10%;
     cursor: pointer;
     z-index: 1;
@@ -48,11 +50,11 @@ $message-box-close-icon-position: 2%;
 }
 .messag-main-box{
     .message-box{
-        position: absolute;
+        position: fixed;
         background: $message-box-bg-color;
         width: 360px;
         height: 450px;
-        top: 46%;
+        top: 35%;
         right: 10%;
         display: flex !important;
         z-index: 1;
@@ -89,3 +91,38 @@ $message-box-close-icon-position: 2%;
     }
     
 }
+
+//have to solve problem for lower than 1024px displays
+@media only screen and (min-width: 1000px) and (max-width: 1199px) {
+    .card-content{
+        min-width: 30% !important;
+    }    
+}
+//have to solve problem for lower than 999px displays
+@media only screen and (min-width: 768px) and (max-width: 999px) {
+    .card-content{
+        min-width: 30% !important;
+    }    
+}
+
+//have to solve problem for lower than 768px displays
+@media only screen and (min-width: 540px) and (max-width: 768px) {
+    .card-content{
+        min-width: 50% !important;
+    }    
+}
+
+//have to solve problem for lower than 540px displays
+@media only screen and (min-width: 420px) and (max-width: 539px) {
+    .card-content{
+        min-width: 60% !important;
+    }    
+}
+//have to solve problem for lower than 420px displays
+@media only screen and (min-width: 320px) and (max-width: 419px) {
+    .card-content{
+        min-width: 90% !important;
+    }    
+}
+
+

@@ -52,7 +52,7 @@
             // display: none;
             position: absolute;
             z-index: 1;
-            left: -35%;
+            left: -35% !important;
             // transition: 1s;
         }
         // .content{
@@ -66,84 +66,98 @@
     .contents{
         height: 100%;
         .active-side-nav{
-            left: 40% !important;
-            width: 40% !important;
+            left: 30% !important;
+            width: 30% !important;
         }
         .icon{
             display: block !important;
         }
         .side-nav{
-            width: 40% !important;
+            width: 30% !important;
             // height: 100% !important;
             // margin-bottom: 100px !important;
             // position: ;
             // display: none;
             position: absolute;
             z-index: 1;
-            left: -40%;
+            left: -30%;
             // transition: 1s;
         }
-        // .content{
-        //     width: 75% !important;
-        // }
+        .content-display-width-active{
+            width: 70% !important;
+        }
+        .content-display-width-inactive{
+            width: 100% !important;
+        }
+        
 
     }
   }
 
+  
   //have to solve problem for lower than 768px displays
   @media only screen and (min-width: 540px) and (max-width: 767px) {
     .contents{
         height: 100%;
         .active-side-nav{
-            left: 70% !important;
-            width: 70% !important;
+            left: 0% !important;
+            width: 50% !important;
         }
         .icon{
             display: block !important;
         }
         .side-nav{
-            width: 70% !important;
+            width: 50% !important;
             // height: 100% !important;
             // margin-bottom: 100px !important;
             // position: ;
             // display: none;
-            position: absolute;
+            position: fixed;
             z-index: 1;
-            left: -70%;
+            left: -50%;
             // transition: 1s;
         }
         // .content{
         //     width: 75% !important;
         // }
+        .content-display-width-active{
+            width: 60% !important;
+        }
+        .content-display-width-inactive{
+            width: 100% !important;
+        }
 
     }
   }
+ //have to solve problem for lower than 540px displays
+ @media only screen and (min-width: 420px) and (max-width: 539px) {
+    .contents{
+        height: 100vh;
+        .active-side-nav{
+            position: fixed;
+            left: 14% !important;
+            width: 86% !important;
+            z-index: 1;
+        }
+        .icon{
+            display: block !important;
+        }
 
-    //have to solve problem for lower than 540px displays
-    @media only screen and (min-width: 420px) and (max-width: 539px) {
+    }
+  }
+    //have to solve problem for lower than 420px displays
+    @media only screen and (min-width: 320px) and (max-width: 419px) {
         .contents{
             height: 100vh;
             .active-side-nav{
-                left: 100% !important;
-                width: 100% !important;
+                position: fixed;
+                left: 16% !important;
+                width: 84% !important;
+                z-index: 1;
             }
             .icon{
                 display: block !important;
             }
-            .side-nav{
-                width: 100% !important;
-                // height: 100% !important;
-                // margin-bottom: 100px !important;
-                // position: ;
-                // display: none;
-                position: absolute;
-                z-index: 1;
-                left: -100%;
-                // transition: 1s;
-            }
-            // .content{
-            //     width: 75% !important;
-            // }
     
         }
       }

@@ -18,6 +18,7 @@ export class InvitationsComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.getProjectInvitationList();
+    // console.log(this.getProjectInvitationLength());
    }
 
   ngOnInit(): void {
@@ -30,6 +31,13 @@ export class InvitationsComponent implements OnInit {
       this.projectInvitation = this.projectInvitation.projectRequestList;
       // console.log(this.projectInvitation);
     })
+  }
+  //method to get project invitation length
+  getProjectInvitationLength(){
+    // return this.projectInvitation.length;
+    return (this.projectInvitation == undefined ? 0 : this.projectInvitation.length);
+    // console.log(this.projectInvitation.length);
+
   }
   //method to set accept form data
   setAcceptFormData(projectId){
