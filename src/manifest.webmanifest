@@ -1,6 +1,6 @@
 {
-  "name": "kanban-app-front",
-  "short_name": "kanban-app-front",
+  "name": "KanbanBoard",
+  "short_name": "KanbanBoard",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
