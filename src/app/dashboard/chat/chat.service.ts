@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {io} from 'socket.io-client';
-
+import { environment } from './../../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class ChatService {
-  private url = 'http://localhost:3000';
+  private url = `${environment.apiURI}`;
   private socket = io(`${this.url}`);
   constructor() { 
     // this.setUpConnection();
