@@ -21,6 +21,7 @@
     "@angular/platform-browser": "~9.0.0",
     "@angular/platform-browser-dynamic": "~9.0.0",
     "@angular/router": "~9.0.0",
+    "@angular/service-worker": "~9.0.0",
     "@auth0/angular-jwt": "^5.0.1",
     "angular-jwt": "^0.1.11",
     "mdbootstrap": "^4.19.1",

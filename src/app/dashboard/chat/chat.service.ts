@@ -6,8 +6,8 @@ import { environment } from './../../../environments/environment';
   providedIn: 'root'
 })
 export class ChatService {
-  private url = `https://kanbanboardapi.herokuapp.com`;
-//   private url = `http://localhost:3000`;
+//   private url = `https://kanbanboardapi.herokuapp.com`;
+  private url = `${environment.socketURI}`;
   private socket = io(`${this.url}`);
   constructor() { 
     // this.setUpConnection();
