@@ -142,6 +142,17 @@
         .icon{
             display: block !important;
         }
+        .side-nav{
+            width: 50% !important;
+            // height: 100% !important;
+            // margin-bottom: 100px !important;
+            // position: ;
+            // display: none;
+            position: fixed;
+            z-index: 1;
+            left: -50%;
+            // transition: 1s;
+        }
 
     }
   }
@@ -157,6 +168,17 @@
             }
             .icon{
                 display: block !important;
+            }
+            .side-nav{
+                width: 50% !important;
+                // height: 100% !important;
+                // margin-bottom: 100px !important;
+                // position: ;
+                // display: none;
+                position: fixed;
+                z-index: 1;
+                left: -50%;
+                // transition: 1s;
             }
     
         }
